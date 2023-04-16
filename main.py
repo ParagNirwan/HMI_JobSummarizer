@@ -17,6 +17,10 @@
    such as precision, recall, and F1 score to measure the performance of your summarization system.
 #############################################################################################################################################################################'''
 import re
+import spacy
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
+
 
 # First things first we gotta copy all the  stuff
 with open('./Assets/eures_job_desc_en.txt', encoding='utf-8') as f:
@@ -25,12 +29,20 @@ with open('./Assets/eures_job_desc_en.txt', encoding='utf-8') as f:
 # Putting everything in a single string
 delimiter = ' '
 all_jobs_string = delimiter.join(contents)
-print(all_jobs_string)
+#print(all_jobs_string)
 
 #Seperating all jobs and Printing apparently it's 10666
 all_jobs_list = re.split(r'-----',all_jobs_string)
-
+'''
 print(all_jobs_list)
 print(type(all_jobs_list))
 print(len(all_jobs_list))
 print(all_jobs_list[:2])
+'''
+
+#Context
+# Create a TF-IDF matrix
+vectorizer = TfidfVectorizer(stop_words='english')
+x= vectorizer.fit_transform(contents)
+print(x)
+print("Parag is bestie of Jadya")
