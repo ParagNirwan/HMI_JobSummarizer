@@ -8,7 +8,7 @@
 2. Feature Extraction: Extract the relevant features from the preprocessed job descriptions. For this task, you can use techniques such as bag-of-words, n-grams, and
    term frequency-inverse document frequency (TF-IDF).
 
-3. Clustering: Use clustering algorithms such as K-means or Hierarchical clustering to group similar job descriptions based on their extracted features.
+3. Clustering: Use clustering algorithms such as K-means or Hierarchical clustering to group similar job descriptions based on th eir extracted features.
 
 4. Summarization: Once the job descriptions have been clustered, summarize the requirements/pre-requisites that are common to each cluster. You can achieve this by
    identifying the most frequent terms or phrases within each cluster and constructing a summary of the requirements based on them.
