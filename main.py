@@ -5,8 +5,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from spacy.lang.en.stop_words import STOP_WORDS
 import re
-import time
-# start_time = time.time()
+from spacy.language import Language
+from spacy_language_detection import LanguageDetector
+from spacy.lang.en import Language
 
 # Load job offers from file into pandas dataframe
 with open('./Assets/dummy.txt', encoding='utf-8') as f:
@@ -16,15 +17,28 @@ nlp = spacy.load('en_core_web_sm')
 
 delimiter = ''
 jobs_string = delimiter.join(contents)
-# jobs_string = jobs_string.replace(" ","")
-separated_jobs = re.split(r"-----|\n",jobs_string)
-print(separated_jobs)
+jobs_string = jobs_string.replace("\n", " ")
+separated_jobs = re.split(r"-----", jobs_string)
+separated_jobs = separated_jobs[1:-1]
+
+# Removing Empty Entries
+Separated_jobs = [element for element in separated_jobs if element != ""]
+
+y = 1
+for x in separated_jobs:
+    print(y, ". " + x)
+    y = y + 1
+    print("-" * 469)
+
+
 # Define a function to preprocess each job description
 def preprocess(text):
-    #Remove stopwords and empty spaces, lemmatize, and tokenize using Spacy
+    # Remove stopwords and empty spaces, lemmatize, and tokenize using Spacy
     doc = nlp(text)
     tokens = [token.lemma_.lower() for token in doc if not token.is_stop and not token.is_space]
     return ' '.join(tokens)
+
+
 # Preprocess each job description
 data = []
 processed_jobs_description = [preprocess(text) for text in separated_jobs]
@@ -32,15 +46,15 @@ for each_data in processed_jobs_description:
     lines = each_data.splitlines()
     # Initialize an empty list to store the dictionaries
     # Loop through each line and split it into key-value pairs
-    for i in range(0,len(lines)):
+    for i in range(0, len(lines)):
         if (lines[i] != ""):
             parts = lines[i].split(':')
             key = parts[0]
             if (len(parts) > 1):
                 values = parts[1]
             else:
-                j = i+1
-                if(j<len(lines)):
+                j = i + 1
+                if (j < len(lines)):
                     values = lines[j]
                 # values = [v.strip() for v in values]
 
@@ -75,6 +89,3 @@ print(data)
 #     for j, row in cluster_df.sample(min(5, cluster_size)).iterrows():
 #         print(row['job_description'])
 #     print('\n')
-# end_time = time.time()
-# elapsed_time = end_time - start_time
-# print(f"Time taken: {elapsed_time:.6f} seconds")
