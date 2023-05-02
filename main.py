@@ -8,6 +8,7 @@ import re
 from spacy.language import Language
 from spacy_language_detection import LanguageDetector
 from spacy.lang.en import Language
+import TopicModelling
 
 # Load job offers from file into pandas dataframe
 with open('./Assets/dummy.txt', encoding='utf-8') as f:
@@ -29,6 +30,15 @@ for x in separated_jobs:
     print(y, ". " + x)
     y = y + 1
     print("-" * 469)
+
+#Topic Modelling and Stop Words removal
+cleanedJobList = []
+for string in separated_jobs:
+    doc = nlp(string)
+    words = [token.text for token in doc if not token.is_stop]
+    cleanedJobList.append(" ".join(words))
+
+TopicModelling.TModelling(cleanedJobList)
 
 
 # Define a function to preprocess each job description
