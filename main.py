@@ -6,7 +6,6 @@ from sklearn.cluster import KMeans
 from spacy.lang.en.stop_words import STOP_WORDS
 import re
 from spacy.language import Language
-from spacy_language_detection import LanguageDetector
 from spacy.lang.en import Language
 import TopicModelling
 
@@ -37,8 +36,10 @@ for string in separated_jobs:
     doc = nlp(string)
     words = [token.text for token in doc if not token.is_stop]
     cleanedJobList.append(" ".join(words))
-
-TopicModelling.TModelling(cleanedJobList)
+print("Cleaned List \n")
+for x in cleanedJobList:
+    print(x)
+TopicModelling.TM(cleanedJobList)
 
 
 # Define a function to preprocess each job description
