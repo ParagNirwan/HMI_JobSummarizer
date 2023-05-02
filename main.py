@@ -31,15 +31,15 @@ for x in separated_jobs:
     print("-" * 469)
 
 #Topic Modelling and Stop Words removal
-cleanedJobList = []
-for string in separated_jobs:
-    doc = nlp(string)
-    words = [token.text for token in doc if not token.is_stop]
-    cleanedJobList.append(" ".join(words))
+processed_jobs = []
+for job in separated_jobs:
+    doc = nlp(job)
+    processed_job = " ".join(token.text for token in doc if not token.is_punct and not token.is_stop)
+    processed_jobs.append(processed_job)
 print("Cleaned List \n")
-for x in cleanedJobList:
+for x in processed_jobs:
     print(x)
-TopicModelling.TM(cleanedJobList)
+TopicModelling.TM(processed_jobs)
 
 
 # Define a function to preprocess each job description
