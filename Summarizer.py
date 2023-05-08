@@ -53,6 +53,14 @@ stop_words = set(stopwords.words('english'))
 
 delimiter = ''
 jobs_string = delimiter.join(contents)
-separated_jobs = re.split(r"-----", jobs_string)
-for job in separated_jobs:
-    summarize_jobs(job)
+
+separated_jobs = []
+
+if jobs_string.__contains__("-----"):
+    separated_jobs = re.split(r"-----", jobs_string)
+    for job in separated_jobs:
+        summarize_jobs(job)
+else:
+    summarize_jobs(jobs_string)
+
+
