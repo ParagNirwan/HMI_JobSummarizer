@@ -46,16 +46,11 @@ with open('./Assets/dummy.txt', encoding='utf-8') as f:
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
 
-# Load NLTK stop words
-stop_words = set(stopwords.words('english'))
-
 # Job description to summarize
-
 delimiter = ''
 jobs_string = delimiter.join(contents)
 
 separated_jobs = []
-
 if jobs_string.__contains__("-----"):
     separated_jobs = re.split(r"-----", jobs_string)
     for job in separated_jobs:
