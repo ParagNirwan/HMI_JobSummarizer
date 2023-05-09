@@ -31,7 +31,7 @@ categories = [
     ('Executive Assistant',
      ['Calendar management', 'travel arrangements', 'event planning', 'correspondence', 'discretion']),
     ('Mechanical Engineer', ['CAD', 'prototyping', 'material science', 'thermodynamics', 'manufacturing']),
-    ('Registered Nurse',
+    ('Nurse',
      ['Patient assessment', 'medication administration', 'clinical skills', 'patient education', 'care coordination']),
     ('Graphic Designer', ['Typography', 'branding', 'print design', 'visual identity', 'color theory']),
     ('sales', ['sales', 'salesperson', 'sales associate, sales manager']),
@@ -76,10 +76,10 @@ classifier = NaiveBayesClassifier(train_data)
 
 # Test the classifier
 test_data = [
-    'Java',
-    'Marketing Manager',
-    'Financial Analyst',
-    'Sales Associate'
+    'We need a developer with experience in Java, Spring framework and debugging',
+    'Person  needed for developing new marketing strategy',
+    'In search of a person with experience in making deals and good negotiation skills',
+    'Required person who coordinate and take care of patient, their medication',
 ]
 for job_title in test_data:
     category = classifier.classify(job_title)
