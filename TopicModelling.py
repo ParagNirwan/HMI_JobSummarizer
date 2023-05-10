@@ -6,7 +6,7 @@ def TM(jobs):
 
 
     # define the number of topics
-    num_topics = 10
+    num_topics = 3
 
     # create a list to store the topics for each job
     job_topics = []

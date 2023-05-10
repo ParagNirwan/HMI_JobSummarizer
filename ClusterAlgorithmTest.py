@@ -1,5 +1,4 @@
 import nltk
-nltk.download('punkt')
 from textblob.classifiers import NaiveBayesClassifier
 
 # Define the job categories
@@ -31,7 +30,7 @@ categories = [
     ('Executive Assistant',
      ['Calendar management', 'travel arrangements', 'event planning', 'correspondence', 'discretion']),
     ('Mechanical Engineer', ['CAD', 'prototyping', 'material science', 'thermodynamics', 'manufacturing']),
-    ('Nurse',
+    ('Healthcare',
      ['Patient assessment', 'medication administration', 'clinical skills', 'patient education', 'care coordination']),
     ('Graphic Designer', ['Typography', 'branding', 'print design', 'visual identity', 'color theory']),
     ('sales', ['sales', 'salesperson', 'sales associate, sales manager']),
@@ -83,4 +82,4 @@ test_data = [
 ]
 for job_title in test_data:
     category = classifier.classify(job_title)
-    print(f"{job_title} is in the {category} category.")
+    print(f"{job_title} is in the : {category} category.")
