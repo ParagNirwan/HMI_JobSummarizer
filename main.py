@@ -7,7 +7,6 @@ from spacy.lang.en.stop_words import STOP_WORDS
 import re
 from spacy.language import Language
 from spacy.lang.en import Language
-import TopicModelling
 import DataCleaning
 
 nlp = spacy.load('en_core_web_sm')
