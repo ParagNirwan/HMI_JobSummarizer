@@ -8,38 +8,19 @@ import re
 from spacy.language import Language
 from spacy.lang.en import Language
 import TopicModelling
-
-# Load job offers from file into pandas dataframe
-with open('./Assets/dummy.txt', encoding='utf-8') as f:
-    contents = f.readlines()
+import DataCleaning
 
 nlp = spacy.load('en_core_web_sm')
 
-delimiter = ''
-jobs_string = delimiter.join(contents)
-jobs_string = jobs_string.replace("\n", " ")
-separated_jobs = re.split(r"-----", jobs_string)
-separated_jobs = separated_jobs[1:-1]
+separated_jobs = DataCleaning.dataCleaning()
 
-# Removing Empty Entries
-Separated_jobs = [element for element in separated_jobs if element != ""]
-
+#Printing the separated jobs list
 y = 1
 for x in separated_jobs:
     print(y, ". " + x)
     y = y + 1
-    print("-" * 469)
+    print("-" * 100)
 
-#Topic Modelling and Stop Words removal
-processed_jobs = []
-for job in separated_jobs:
-    doc = nlp(job)
-    processed_job = " ".join(token.text for token in doc if not token.is_punct and not token.is_stop)
-    processed_jobs.append(processed_job)
-print("Cleaned List \n")
-for x in processed_jobs:
-    print(x)
-TopicModelling.TM(processed_jobs)
 
 
 # Define a function to preprocess each job description
