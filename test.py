@@ -1,31 +1,67 @@
-# Open the file
-with open('./Assets/dummy.txt', 'r') as f:
-    # Read the contents of the file
-    contents = f.read()
+import spacy
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize, sent_tokenize
+import re
+from spacy import displacy
 
-    # Split the contents into lines
-    lines = contents.splitlines()
+# Load job offers from file into pandas dataframe
+with open('./Assets/dummy.txt', encoding='utf-8') as f:
+    contents = f.readlines()
+# Load spaCy model
+nlp = spacy.load("en_core_web_sm")
 
-    # Initialize an empty list to store the dictionaries
-    data = []
+# Job description to summarize
+delimiter = ''
+jobs_string = delimiter.join(contents)
 
-    # Loop through each line and split it into key-value pairs
-    for line in lines:
-        if(line != ""):
-            parts = line.split(':')
-            key = parts[0]
-            values = ''
-            if(len(parts)>1):
-                values = parts[1]
-                # values = [v.strip() for v in values]
+# separated_jobs = []
+# all_jobs = []
+# if jobs_string.__contains__("-----"):
+#     jobs_string = re.sub(r'[?]', ':', jobs_string)
+#     jobs_string = re.sub(r'[$-]', ',', jobs_string)
+#     separated_jobs = re.split(r"-----", jobs_string)
+#     job_count = 0
+#     for job in separated_jobs:
+#         if job != "":
+#             job_count = job_count + 1
+#             pattern = r"^(.*?):\s*(.*)$"
+#             matches = re.findall(pattern, job, re.MULTILINE)
+#             filtered_jobs = [{"job": job_count}]
+#             for key, value in matches:
+#                 if key.__contains__('Job Description') or key.__contains__('Requirements') or key.__contains__('What you bring'):
+#                     job = {key: value}
+#                     filtered_jobs.append(job)
+#             all_jobs.append(filtered_jobs)
+#
+# for each_job in all_jobs:
+#     print(each_job)
 
-        # Create a new dictionary and add the key-value pairs
-        d = {}
-        d['key'] = key
-        d['values'] = values
 
-        # Append the new dictionary to the list
-        data.append(d)
+separated_jobs = []
+all_jobs = []
+if jobs_string.__contains__("-----"):
+    separated_jobs = re.split(r"-----", jobs_string)
+    job_count = 0
+    for job in separated_jobs:
+        if job != "":
+            lines = job.strip().split('\n')
+            result = {}
+            current_key = None
+            for line in lines:
+                if ':' in line:
+                    current_key, value = line.split(':', 1)
+                    result[current_key.strip()] = value.strip()
+                else:
+                    result[current_key] += ' ' + line.strip()
+            job_count = job_count + 1
+            filtered_jobs = [{"job": job_count}]
+            for key, value in result.items():
+                if key.__contains__('Job Description') or key.__contains__('Basic knowledge') or key.__contains__(
+                        'What you bring') or key.__contains__('Advanced knowledge') or key.__contains__('Expert knowledge') or key.__contains__('Requirement') or key.__contains__('requirements'):
+                    # print(f'{key}: {value}')
+                    job = {key: value}
+                    filtered_jobs.append(job)
+            all_jobs.append(filtered_jobs)
 
-# Print the resulting data
-print(data)
+for each_job in all_jobs:
+    print(each_job)
