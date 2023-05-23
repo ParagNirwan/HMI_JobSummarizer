@@ -1,4 +1,5 @@
 import spacy
+import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 import re
@@ -27,6 +28,7 @@ def summarize_jobs(each_job):
             if word in fdist:
                 if sent not in sentence_scores:
                     sentence_scores[sent] = fdist[word]
+                    print(sent,word)
                 else:
                     sentence_scores[sent] += fdist[word]
 

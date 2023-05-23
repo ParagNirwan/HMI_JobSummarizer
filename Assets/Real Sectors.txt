@@ -1,0 +1,22 @@
+sectors = {
+        "Information Technology": ["software", "developer", "data analyst", "cybersecurity", "IT"],
+        "Healthcare and Pharmaceuticals": ["nurse", "doctor", "pharmaceutical", "healthcare"],
+        "Engineering": ["engineer", "civil", "mechanical", "electrical", "aerospace"],
+        "Financial Services": ["finance", "banking", "insurance", "investment", "fintech"],
+        "Renewable Energy": ["renewable energy", "solar", "wind", "hydro"],
+        "Professional Services": ["consulting", "legal services", "accounting", "human resources"],
+        "Tourism and Hospitality": ["tourism", "hospitality", "hotel", "restaurant", "travel"],
+        "Manufacturing": ["manufacturing", "automotive", "machinery", "aerospace"],
+        "Retail and E-commerce": ["retail", "e-commerce", "sales", "marketing", "logistics"],
+        "Education": ["education", "teaching", "research", "university"],
+        "Telecommunications": ["telecommunications", "network", "communication", "telecom"],
+        "Transportation and Logistics": ["transportation", "logistics", "supply chain"],
+        "Consulting": ["consulting", "advisor", "strategy"],
+        "Media and Entertainment": ["media", "entertainment", "film", "television"],
+        "Construction": ["construction", "civil engineering", "building"],
+        "Automotive": ["automotive", "vehicles", "car", "auto"],
+        "Government and Public Administration": ["government", "public administration", "public sector"],
+        "Food and Beverage": ["food", "beverage", "restaurant", "catering"],
+        "Real Estate": ["real estate", "property", "housing"],
+        "Fashion and Apparel": ["fashion", "apparel", "clothing", "design"]
+    }
