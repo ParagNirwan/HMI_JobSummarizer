@@ -3,9 +3,8 @@ import DataCleaning
 
 def categorize_job_ad(job_description):
     job_description = job_description.lower()
-
     sectors = {
-        "it": [
+        "Information Technology": [
             "software", "developer", "programmer", "coding", "web development",
             "data analyst", "data scientist", "machine learning", "artificial intelligence",
             "cybersecurity", "networking", "cloud computing", "database",
@@ -19,9 +18,9 @@ def categorize_job_ad(job_description):
             "software architecture", "system administration", "network administration", "server management", "algorithm"
         ],
 
-        "healthcare": [
+        "Healthcare": [
             "nurse", "doctor", "physician", "surgeon", "pharmacist",
-            "medical", "healthcare", "hospital", "clinic", "patient care",
+            "medical", "dental", "healthcare", "hospital", "clinic", "patient care",
             "pharmacy", "medical research", "clinical trials", "diagnostics", "vaccine",
             "epidemiology", "public health", "genetics", "bioinformatics", "biotechnology",
             "pharmaceutical", "pharmacology", "anatomy", "physiology", "pathology",
@@ -32,7 +31,7 @@ def categorize_job_ad(job_description):
             "patient advocacy", "medical coding", "healthcare consulting", "rehabilitation", "emergency medicine"
         ],
 
-        "engineering": [
+        "Engineering": [
             "engineer", "mechanical", "electrical", "civil", "chemical",
             "aerospace", "structural", "industrial", "automotive", "robotics",
             "manufacturing", "materials", "mechatronics", "process", "design",
@@ -45,7 +44,7 @@ def categorize_job_ad(job_description):
             "programming", "algorithms", "problem-solving", "technical drawing", "innovation"
         ],
 
-        "financial": [
+        "Financial": [
             "finance", "banking", "investment", "financial services", "wealth management",
             "financial analysis", "risk management", "asset management", "portfolio management", "financial planning",
             "investment banking", "trading", "derivatives", "equities", "fixed income",
@@ -59,7 +58,7 @@ def categorize_job_ad(job_description):
             "corporate finance", "economic analysis", "financial consulting", "financial advisory", "wealth advisor"
         ],
 
-        "education": [
+        "Education": [
             "education", "teaching", "learning", "instruction", "curriculum",
             "school", "college", "university", "academic", "student",
             "research", "e-learning", "online learning", "educational technology", "pedagogy",
@@ -76,7 +75,7 @@ def categorize_job_ad(job_description):
             "STEM education", "language education", "physical education", "art education", "music education"
         ],
 
-        "manufacturing": [
+        "Manufacturing": [
             "manufacturing", "production", "assembly", "operations", "supply chain",
             "quality control", "lean manufacturing", "six sigma", "process improvement", "continuous improvement",
             "automation", "robotics", "machining", "fabrication", "logistics",
@@ -93,7 +92,7 @@ def categorize_job_ad(job_description):
             "CAD/CAM"
         ],
 
-        "retail": [
+        "Retail": [
             "retail", "e-commerce", "online shopping", "brick and mortar", "customer service",
             "visual merchandising", "inventory management", "store operations", "point of sale", "omnichannel",
             "supply chain", "logistics", "warehouse management", "order fulfillment", "inventory control",
@@ -108,7 +107,7 @@ def categorize_job_ad(job_description):
             "cross-border e-commerce"
         ],
 
-        "consulting": [
+        "Consulting": [
             "consulting", "management consulting", "strategy consulting", "business consulting", "advisory services",
             "strategic planning", "problem-solving", "organizational development", "process improvement",
             "change management",
@@ -127,7 +126,7 @@ def categorize_job_ad(job_description):
             "energy consulting"
         ],
 
-        "media": [
+        "Media": [
             "media", "entertainment", "film", "television", "music",
             "broadcasting", "digital media", "content creation", "content production", "streaming",
             "journalism", "reporting", "editing", "screenwriting", "cinematography",
@@ -140,7 +139,7 @@ def categorize_job_ad(job_description):
             "creative writing", "storytelling", "celebrity management", "fashion", "sports media"
         ],
 
-        "telecommunications": [
+        "Telecommunications": [
             "telecommunications", "networking", "telecom infrastructure", "wireless communication", "telephony",
             "mobile networks", "fixed-line networks", "broadband", "fiber optics", "satellite communication",
             "5G", "4G", "LTE", "VoIP", "Internet of Things",
@@ -155,7 +154,7 @@ def categorize_job_ad(job_description):
             "telecom billing", "telecom customer care", "telecom sales", "telecom marketing", "telecom strategy"
         ],
 
-        "government public admin": [
+        "Government public admin": [
             "government", "public administration", "public policy", "public sector", "public service",
             "policy analysis", "legislation", "regulation", "governance", "public finance",
             "public management", "public affairs", "public administration reform", "government programs",
@@ -176,7 +175,7 @@ def categorize_job_ad(job_description):
             "public sector transparency", "public sector sustainability"
         ],
 
-        "renewable energy": [
+        "Renewable energy": [
             "renewable energy", "solar power", "wind energy", "hydropower", "biomass",
             "geothermal energy", "tidal energy", "energy storage", "energy efficiency", "sustainable energy",
             "clean energy", "renewable power generation", "renewable energy technologies", "renewable energy projects",
@@ -198,7 +197,7 @@ def categorize_job_ad(job_description):
             "renewable energy awareness", "renewable energy impact assessment"
         ],
 
-        "transportation logistics": [
+        "Transportation logistics": [
             "transportation", "logistics", "supply chain", "freight", "shipping",
             "transportation management", "warehouse management", "inventory management", "distribution",
             "fleet management",
@@ -217,7 +216,7 @@ def categorize_job_ad(job_description):
             "logistics performance measurement"
         ],
 
-        "hospitality tourism": [
+        "Hospitality tourism": [
             "hospitality", "tourism", "hotel", "resort", "restaurant",
             "travel", "accommodation", "hospitality management", "customer service", "guest relations",
             "event management", "food and beverage", "catering", "front desk", "housekeeping",
@@ -234,7 +233,7 @@ def categorize_job_ad(job_description):
             "hospitality operations management", "hospitality risk management"
         ],
 
-        "automotive": [
+        "Automotive": [
             "automotive", "automobile", "vehicle", "car", "automotive industry",
             "automotive engineering", "automotive design", "automotive manufacturing", "automotive technology",
             "automotive components",
@@ -254,7 +253,7 @@ def categorize_job_ad(job_description):
             "automotive exterior design"
         ],
 
-        "real estate": [
+        "Real estate": [
             "real estate", "property", "residential", "commercial", "real estate market",
             "real estate investment", "real estate development", "real estate finance", "property management",
             "real estate brokerage",
@@ -276,171 +275,172 @@ def categorize_job_ad(job_description):
             "real estate industry news", "real estate conferences"
         ],
 
-        "food and beverages": [
-            "Food service",
-            "Restaurant management",
-            "Culinary arts",
-            "Hospitality",
-            "Bartending",
-            "Barista",
-            "Waitstaff",
-            "Sommelier",
-            "Catering",
-            "Banquet",
-            "Chef",
-            "Cook",
-            "Line cook",
-            "Sous chef",
-            "Executive chef",
-            "Pastry chef",
-            "Baker",
-            "Catering manager",
-            "Restaurant manager",
-            "Food and beverage manager",
-            "General manager",
-            "Kitchen manager",
-            "Front of house manager",
-            "Bar manager",
-            "Wine steward",
-            "Restaurant server",
-            "Bartender",
-            "Barista",
-            "Waiter",
-            "Waitress",
-            "Hostess",
-            "Busser",
-            "Dishwasher",
-            "Food runner",
-            "Sommelier",
-            "Banquet server",
-            "Catering assistant",
-            "Food and beverage director",
-            "Event coordinator",
-            "Food scientist",
-            "Food technologist",
-            "Quality control",
-            "Food safety",
-            "Nutritionist",
-            "Menu planner",
-            "Food writer",
-            "Food photographer",
-            "Restaurant critic",
-            "Food stylist",
-            "Dietary manager",
-            "Food service supervisor",
-            "Food production",
-            "Inventory management"
+        "Food and beverages": [
+            "food",
+            "food service",
+            "restaurant management",
+            "culinary arts",
+            "hospitality",
+            "bartending",
+            "barista",
+            "waitstaff",
+            "sommelier",
+            "catering",
+            "banquet",
+            "chef",
+            "cook",
+            "line cook",
+            "sous chef",
+            "executive chef",
+            "pastry chef",
+            "baker",
+            "catering manager",
+            "restaurant manager",
+            "food and beverage manager",
+            "general manager",
+            "kitchen manager",
+            "front of house manager",
+            "bar manager",
+            "wine steward",
+            "restaurant server",
+            "bartender",
+            "barista",
+            "waiter",
+            "waitress",
+            "hostess",
+            "busser",
+            "dishwasher",
+            "food runner",
+            "sommelier",
+            "banquet server",
+            "catering assistant",
+            "food and beverage director",
+            "event coordinator",
+            "food scientist",
+            "food technologist",
+            "quality control",
+            "food safety",
+            "nutritionist",
+            "menu planner",
+            "food writer",
+            "food photographer",
+            "restaurant critic",
+            "food stylist",
+            "dietary manager",
+            "food service supervisor",
+            "food production",
+            "inventory management"
         ],
 
         "Fashion and apparel": [
-            "Fashion design",
-            "Fashion merchandising",
-            "Apparel production",
-            "Garment manufacturing",
-            "Textile design",
-            "Fashion marketing",
-            "Fashion buyer",
-            "Fashion stylist",
-            "Fashion coordinator",
-            "Fashion photographer",
-            "Fashion blogger",
-            "Fashion journalist",
-            "Fashion illustrator",
-            "Fashion model",
-            "Pattern making",
-            "Fashion showroom",
-            "Fashion retail",
-            "Visual merchandising",
-            "Fashion branding",
-            "Fashion PR",
-            "Fashion event",
-            "Fashion consultant",
-            "Fashion editor",
-            "Fashion stylist",
-            "Fashion assistant",
-            "Fashion designer",
-            "Fashion illustrator",
-            "Fashion photographer",
-            "Fashion stylist",
-            "Fashion coordinator",
-            "Fashion buyer",
-            "Fashion merchandiser",
-            "Fashion marketer",
-            "Fashion trend analyst",
-            "Fashion publicist",
-            "Fashion blogger",
-            "Fashion influencer",
-            "Fashion retail manager",
-            "Fashion sales associate",
-            "Fashion store manager",
-            "Fashion store assistant",
-            "Fashion production manager",
-            "Textile technologist",
-            "Apparel quality control",
-            "Fashion pattern maker",
-            "Fashion production coordinator",
-            "Fashion sourcing",
-            "Fashion warehouse",
-            "Fashion supply chain",
-            "Fashion logistics",
-            "Fashion e-commerce",
-            "Fashion brand manager"
+            "fashion design",
+            "fashion merchandising",
+            "apparel production",
+            "garment manufacturing",
+            "textile design",
+            "fashion marketing",
+            "fashion buyer",
+            "fashion stylist",
+            "fashion coordinator",
+            "fashion photographer",
+            "fashion blogger",
+            "fashion journalist",
+            "fashion illustrator",
+            "fashion model",
+            "pattern making",
+            "fashion showroom",
+            "fashion retail",
+            "visual merchandising",
+            "fashion branding",
+            "fashion pr",
+            "fashion event",
+            "fashion consultant",
+            "fashion editor",
+            "fashion stylist",
+            "fashion assistant",
+            "fashion designer",
+            "fashion illustrator",
+            "fashion photographer",
+            "fashion stylist",
+            "fashion coordinator",
+            "fashion buyer",
+            "fashion merchandiser",
+            "fashion marketer",
+            "fashion trend analyst",
+            "fashion publicist",
+            "fashion blogger",
+            "fashion influencer",
+            "fashion retail manager",
+            "fashion sales associate",
+            "fashion store manager",
+            "fashion store assistant",
+            "fashion production manager",
+            "textile technologist",
+            "apparel quality control",
+            "fashion pattern maker",
+            "fashion production coordinator",
+            "fashion sourcing",
+            "fashion warehouse",
+            "fashion supply chain",
+            "fashion logistics",
+            "fashion e-commerce",
+            "fashion brand manager"
         ],
 
         "Construction": [
-            "Construction",
-            "Architecture",
-            "Civil engineering",
-            "Building",
-            "Contractor",
-            "Project management",
-            "Blueprints",
-            "Structural engineering",
-            "Construction management",
-            "Site supervisor",
-            "Construction worker",
-            "Construction site",
-            "Construction equipment",
-            "Construction materials",
-            "Construction safety",
-            "Excavation",
-            "Concrete",
-            "Masonry",
-            "Roofing",
-            "Carpentry",
-            "Electrical",
-            "Plumbing",
-            "HVAC",
-            "Mechanical engineering",
-            "Interior design",
-            "Landscaping",
-            "Surveying",
-            "Estimating",
-            "Scheduling",
-            "Budgeting",
-            "Quality control",
-            "Building codes",
-            "Permits",
-            "Construction technology",
-            "Green building",
-            "Sustainable construction",
-            "Renovation",
-            "Remodeling",
-            "Demolition",
-            "Foundation",
-            "Structural steel",
-            "Formwork",
-            "Building systems",
-            "Safety regulations",
-            "Construction inspection",
-            "Construction drawings",
-            "Site development",
-            "Construction planning",
-            "Construction contracts",
-            "Construction documentation"
+                "construction",
+                "architecture",
+                "civil engineering",
+                "building",
+                "contractor",
+                "project management",
+                "blueprints",
+                "structural engineering",
+                "construction management",
+                "site supervisor",
+                "construction worker",
+                "construction site",
+                "construction equipment",
+                "construction materials",
+                "construction safety",
+                "excavation",
+                "concrete",
+                "masonry",
+                "roofing",
+                "carpentry",
+                "electrical",
+                "plumbing",
+                "hvac",
+                "mechanical engineering",
+                "interior design",
+                "landscaping",
+                "surveying",
+                "estimating",
+                "scheduling",
+                "budgeting",
+                "quality control",
+                "building codes",
+                "permits",
+                "construction technology",
+                "green building",
+                "sustainable construction",
+                "renovation",
+                "remodeling",
+                "demolition",
+                "foundation",
+                "structural steel",
+                "formwork",
+                "building systems",
+                "safety regulations",
+                "construction inspection",
+                "construction drawings",
+                "site development",
+                "construction planning",
+                "construction contracts",
+                "construction documentation"
         ],
 
-        "gaming esports": [
+        "Gaming and Esports": [
             "gaming", "esports", "video games", "game development", "game design",
             "game programming", "game testing", "game art", "game audio", "game marketing",
             "game publishing", "game monetization", "game community", "game streaming", "game tournaments",
@@ -456,12 +456,16 @@ def categorize_job_ad(job_description):
 
     }
 
+    highestCount = {key: 0 for key in sectors}
     for sector, keywords in sectors.items():
         for keyword in keywords:
             if keyword in job_description:
-                return sector
+                highestCount[sector] = highestCount[sector] + 1
 
-    return "Other"
+    maxsect = max(highestCount, key=highestCount.get)
+    print(maxsect, ":", highestCount[maxsect])
+    return maxsect
+
 
 
 # Example job ads
@@ -469,6 +473,7 @@ job_ads = DataCleaning.dataCleaning()
 # Categorize job ads
 for job_ad in job_ads:
     category = categorize_job_ad(job_ad)
-    print(f"Job Description: {job_ad}")
+    print(f"{job_ad}")
     print(f"Job Category: {category}")
     print("----------------------")
+
