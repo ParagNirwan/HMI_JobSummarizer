@@ -1,9 +1,6 @@
 import DataCleaning
 
-
-def categorize_job_ad(job_description):
-    job_description = job_description.lower()
-    sectors = {
+sectors = {
         "Information Technology": [
             "software", "developer", "programmer", "coding", "web development",
             "data analyst", "data scientist", "machine learning", "artificial intelligence",
@@ -15,7 +12,7 @@ def categorize_job_ad(job_description):
             "linux", "unix", "windows", "git", "docker",
             "aws", "azure", "big data", "data mining", "data visualization",
             "iot", "blockchain", "virtual reality", "augmented reality", "web security",
-            "software architecture", "system administration", "network administration", "server management", "algorithm"
+            "software architecture", "system administration", "network administration", "server management", "algorithm", "it skills",",ms office"
         ],
 
         "Healthcare": [
@@ -388,56 +385,56 @@ def categorize_job_ad(job_description):
         ],
 
         "Construction": [
-                "construction",
-                "architecture",
-                "civil engineering",
-                "building",
-                "contractor",
-                "project management",
-                "blueprints",
-                "structural engineering",
-                "construction management",
-                "site supervisor",
-                "construction worker",
-                "construction site",
-                "construction equipment",
-                "construction materials",
-                "construction safety",
-                "excavation",
-                "concrete",
-                "masonry",
-                "roofing",
-                "carpentry",
-                "electrical",
-                "plumbing",
-                "hvac",
-                "mechanical engineering",
-                "interior design",
-                "landscaping",
-                "surveying",
-                "estimating",
-                "scheduling",
-                "budgeting",
-                "quality control",
-                "building codes",
-                "permits",
-                "construction technology",
-                "green building",
-                "sustainable construction",
-                "renovation",
-                "remodeling",
-                "demolition",
-                "foundation",
-                "structural steel",
-                "formwork",
-                "building systems",
-                "safety regulations",
-                "construction inspection",
-                "construction drawings",
-                "site development",
-                "construction planning",
-                "construction contracts",
-                "construction documentation"
+            "construction",
+            "architecture",
+            "civil engineering",
+            "building",
+            "contractor",
+            "project management",
+            "blueprints",
+            "structural engineering",
+            "construction management",
+            "site supervisor",
+            "construction worker",
+            "construction site",
+            "construction equipment",
+            "construction materials",
+            "construction safety",
+            "excavation",
+            "concrete",
+            "masonry",
+            "roofing",
+            "carpentry",
+            "electrical",
+            "plumbing",
+            "hvac",
+            "mechanical engineering",
+            "interior design",
+            "landscaping",
+            "surveying",
+            "estimating",
+            "scheduling",
+            "budgeting",
+            "quality control",
+            "building codes",
+            "permits",
+            "construction technology",
+            "green building",
+            "sustainable construction",
+            "renovation",
+            "remodeling",
+            "demolition",
+            "foundation",
+            "structural steel",
+            "formwork",
+            "building systems",
+            "safety regulations",
+            "construction inspection",
+            "construction drawings",
+            "site development",
+            "construction planning",
+            "construction contracts",
+            "construction documentation"
         ],
 
         "Gaming and Esports": [
@@ -452,28 +449,72 @@ def categorize_job_ad(job_description):
             "game balancing", "game servers", "game networking", "game security", "game testing tools",
             "gaming content creation", "gaming influencers", "gaming livestreaming", "gaming social media",
             "gaming merchandise"
+        ],
+
+        "Law Enforcement": [
+            "communication",
+            "critical thinking",
+            "attention to detail",
+            "problem solving",
+            "conflict resolution",
+            "legal knowledge",
+            "investigation",
+            "physical fitness",
+            "emotional resilience",
+            "analytical skills",
+            "forensic knowledge",
+            "photography skills",
+            "detective agency",
+            "organizational skills",
+            "report writing",
+            "patrol service",
+            "law",
+            "evidence collection",
+            "crime scene investigation",
+            "scientific knowledge",
+            "laboratory skills",
+            "data analysis",
+            "observation skills",
+            "surveillance",
+            "emergency response",
+            "risk assessment",
+            "customer service",
         ]
 
     }
 
-    highestCount = {key: 0 for key in sectors}
+
+def categorize_job_ad(job_description):
+    job_description = job_description.lower()
+
+    count = {key: 0 for key in sectors}
     for sector, keywords in sectors.items():
         for keyword in keywords:
             if keyword in job_description:
-                highestCount[sector] = highestCount[sector] + 1
+                count[sector] = count[sector] + 1
 
-    maxsect = max(highestCount, key=highestCount.get)
-    print(maxsect, ":", highestCount[maxsect])
-    return maxsect
-
+    max_sect = max(count, key=count.get)
+    print(max_sect, ":", count[max_sect])
+    print("----job categorisation distribution over all the sectors-----")
+    result = [cat+" : "+str(count[cat]) for cat in count if count[cat] > 0]
+    print(result)
+    return max_sect
 
 
 # Example job ads
 job_ads = DataCleaning.dataCleaning()
 # Categorize job ads
+all_sect = {key: 0 for key in sectors}
 for job_ad in job_ads:
     category = categorize_job_ad(job_ad)
+    all_sect[category] = all_sect[category] + 1
     print(f"{job_ad}")
     print(f"Job Category: {category}")
     print("----------------------")
 
+print("Each sector and its number of jobs to be clustered")
+print(all_sect)
+sum_of_all = 0
+for each_sect in all_sect:
+    sum_of_all = sum_of_all + all_sect.get(each_sect)
+print("Total categorized:",sum_of_all)

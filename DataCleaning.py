@@ -2,6 +2,7 @@ import spacy
 import re
 from langdetect import detect
 
+
 def dataCleaning():
     # Load job offers from file into pandas dataframe
     with open('./Assets/eures_job_desc_en.txt', encoding='utf-8') as f:
@@ -11,25 +12,22 @@ def dataCleaning():
 
     delimiter = ''
     jobs_string = delimiter.join(contents)
-    #jobs_string = jobs_string.replace("\n", " ")
-    global separated_jobs
+    # jobs_string = jobs_string.replace("\n", " ")
     separated_jobs = re.split(r"-----", jobs_string)
-    separated_jobs = separated_jobs[1:-1]
+    separated_jobs = separated_jobs[1:100]
 
     # Removing Empty Entries
     separated_jobs = [element for element in separated_jobs if element != ""]
-    y = 1
+#    y = 1
 
-    # Removing non English Entries
+    # Removing non-English Entries
     separated_jobs = [job_ad for job_ad in separated_jobs if is_english(job_ad)]
 
     return separated_jobs
+
 
 def is_english(text):
     try:
         return detect(text) == 'en'
     except:
         return False
-
-
-

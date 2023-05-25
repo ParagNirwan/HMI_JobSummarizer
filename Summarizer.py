@@ -3,6 +3,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 import re
+from spacy import displacy
 
 
 def summarize_jobs(each_job):
@@ -11,7 +12,6 @@ def summarize_jobs(each_job):
     filtered_tokens = [token.lemma_.lower() for token in doc if not token.is_stop and not token.is_space]
     # Join the filtered tokens back into a string
     filtered_text = ' '.join(filtered_tokens)
-
     # Use spaCy to extract sentences from the filtered text
     doc = nlp(filtered_text)
     sentences = [sent.text for sent in doc.sents]
@@ -21,6 +21,7 @@ def summarize_jobs(each_job):
     from heapq import nlargest
 
     sentence_scores = {}
+    # frequency distribution
     fdist = FreqDist(filtered_tokens)
 
     for sent in sentences:
@@ -37,7 +38,6 @@ def summarize_jobs(each_job):
 
     # Join the summary sentences back into a string
     summary = ' '.join(summary_sentences)
-
     print(summary)
     print("-" * 400)
 
