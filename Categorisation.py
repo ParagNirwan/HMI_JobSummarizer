@@ -1,4 +1,5 @@
 import DataCleaning
+import visualization
 
 sectors = {
         "Information Technology": [
@@ -486,7 +487,6 @@ sectors = {
 
 def categorize_job_ad(job_description):
     job_description = job_description.lower()
-
     count = {key: 0 for key in sectors}
     for sector, keywords in sectors.items():
         for keyword in keywords:
@@ -501,20 +501,51 @@ def categorize_job_ad(job_description):
     return max_sect
 
 
-# Example job ads
-job_ads = DataCleaning.dataCleaning()
 # Categorize job ads
+filtered_jobs = []
+separated_jobs = DataCleaning.dataCleaning()
+# job_count = 0
+for job in separated_jobs:
+    if job != "":
+        lines = job.strip().split('\n')
+        result = {}
+        current_key = None
+        for line in lines:
+            if ':' in line:
+                current_key, value = line.split(':', 1)
+                result[current_key.strip()] = value.strip()
+            else:
+                result[current_key.strip()] += ' ' + line.strip()
+        # job_count = job_count + 1
+        job_string = ''
+        for key, value in result.items():
+            if key.__contains__('Job Description') or key.__contains__('requirement profile') or key.__contains__('Job requirement') or key.__contains__('Basic knowledge') or key.__contains__(
+                    'What you bring') \
+                    or key.__contains__('tasks include') or key.__contains__(
+                'Advanced knowledge') or key.__contains__('Expert knowledge') \
+                    or key.__contains__('Requirement') or key.__contains__('requirements') or key.__contains__(
+                'she expects') or key.__contains__('out'):
+                job_string = job_string + key.strip() + ": " + value.strip() + "\n"
+        filtered_jobs.append(job_string)
+
+
 all_sect = {key: 0 for key in sectors}
-for job_ad in job_ads:
-    category = categorize_job_ad(job_ad)
+for job in filtered_jobs:
+    category = categorize_job_ad(job)
     all_sect[category] = all_sect[category] + 1
-    print(f"{job_ad}")
+    print(f"{job}")
     print(f"Job Category: {category}")
     print("----------------------")
 
 print("Each sector and its number of jobs to be clustered")
 print(all_sect)
+
 sum_of_all = 0
 for each_sect in all_sect:
     sum_of_all = sum_of_all + all_sect.get(each_sect)
-print("Total categorized:",sum_of_all)
+print("Total categorized:", sum_of_all)
+
+vsn_of_jobs = "visualisation of first "+str(sum_of_all)+" jobs"
+visualization.visualize_jobs(all_sect, "Sectors", "No of jobs", vsn_of_jobs)
+
+

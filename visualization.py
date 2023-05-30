@@ -1,26 +1,19 @@
 import matplotlib.pyplot as plt
 
-def visualize_job_requirements(job_requirements):
-    skills = job_requirements.keys()
-    skill_counts = job_requirements.values()
 
-    plt.bar(skills, skill_counts)
-    plt.xlabel('Skills')
-    plt.ylabel('Count')
-    plt.title('Job Requirements')
+def visualize_jobs(job_requirements, x_label, y_label, title):
+    field = job_requirements.keys()
+    counts = job_requirements.values()
+
+    plt.bar(field, counts)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(title)
 
     # Rotate x-axis labels if needed
-    plt.xticks(rotation=45)
+    plt.xticks(rotation=90)
+    plt.tight_layout()
 
     plt.show()
 
-# Example job requirements
-job_requirements = {
-    'Python': 5,
-    'Data Analysis': 7,
-    'Machine Learning': 4,
-    'Communication': 6,
-    'Problem Solving': 8
-}
 
-visualize_job_requirements(job_requirements)

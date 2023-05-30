@@ -13,8 +13,9 @@ def dataCleaning():
     delimiter = ''
     jobs_string = delimiter.join(contents)
     # jobs_string = jobs_string.replace("\n", " ")
+    jobs_string = jobs_string.replace("requirement profile", "requirement profile:")
     separated_jobs = re.split(r"-----", jobs_string)
-    separated_jobs = separated_jobs[1:100]
+    separated_jobs = separated_jobs[1:101]
 
     # Removing Empty Entries
     separated_jobs = [element for element in separated_jobs if element != ""]

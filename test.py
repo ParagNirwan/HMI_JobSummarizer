@@ -1,67 +1,70 @@
-import spacy
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize, sent_tokenize
-import re
-from spacy import displacy
+import DataCleaning
+import regex
 
-# Load job offers from file into pandas dataframe
-with open('./Assets/dummy.txt', encoding='utf-8') as f:
-    contents = f.readlines()
-# Load spaCy model
-nlp = spacy.load("en_core_web_sm")
 
-# Job description to summarize
-delimiter = ''
-jobs_string = delimiter.join(contents)
-
-# separated_jobs = []
-# all_jobs = []
-# if jobs_string.__contains__("-----"):
-#     jobs_string = re.sub(r'[?]', ':', jobs_string)
-#     jobs_string = re.sub(r'[$-]', ',', jobs_string)
-#     separated_jobs = re.split(r"-----", jobs_string)
+# def job_details_separated():
+#     all_jobs = []
+#     separated_jobs = DataCleaning.dataCleaning()
 #     job_count = 0
 #     for job in separated_jobs:
 #         if job != "":
+#             lines = job.strip().split('\n')
+#             result = {}
+#             current_key = None
+#             for line in lines:
+#                 if ':' in line:
+#                     current_key, value = line.split(':', 1)
+#                     result[current_key.strip()] = value.strip()
+#                 else:
+#                     result[current_key.strip()] += ' ' + line.strip()
 #             job_count = job_count + 1
-#             pattern = r"^(.*?):\s*(.*)$"
-#             matches = re.findall(pattern, job, re.MULTILINE)
 #             filtered_jobs = [{"job": job_count}]
-#             for key, value in matches:
-#                 if key.__contains__('Job Description') or key.__contains__('Requirements') or key.__contains__('What you bring'):
+#             for key, value in result.items():
+#                 if key.__contains__('Job Description') or key.__contains__('Basic knowledge') or key.__contains__(
+#                         'What you bring') \
+#                         or key.__contains__('tasks include') or key.__contains__(
+#                     'Advanced knowledge') or key.__contains__('Expert knowledge') \
+#                         or key.__contains__('Requirement') or key.__contains__('requirements') or key.__contains__(
+#                     'she expects'):
+#                     # print(f'{key}: {value}')
 #                     job = {key: value}
 #                     filtered_jobs.append(job)
 #             all_jobs.append(filtered_jobs)
-#
+
+
 # for each_job in all_jobs:
-#     print(each_job)
+#     for job_desc in each_job:
+#         if job_desc.get("Requirements for Applicant") != "":
+#             print(job_desc)
+#     print("-"*200)
 
-
-separated_jobs = []
 all_jobs = []
-if jobs_string.__contains__("-----"):
-    separated_jobs = re.split(r"-----", jobs_string)
-    job_count = 0
-    for job in separated_jobs:
-        if job != "":
-            lines = job.strip().split('\n')
-            result = {}
-            current_key = None
-            for line in lines:
-                if ':' in line:
-                    current_key, value = line.split(':', 1)
-                    result[current_key.strip()] = value.strip()
-                else:
-                    result[current_key] += ' ' + line.strip()
-            job_count = job_count + 1
-            filtered_jobs = [{"job": job_count}]
-            for key, value in result.items():
-                if key.__contains__('Job Description') or key.__contains__('Basic knowledge') or key.__contains__(
-                        'What you bring') or key.__contains__('Advanced knowledge') or key.__contains__('Expert knowledge') or key.__contains__('Requirement') or key.__contains__('requirements'):
-                    # print(f'{key}: {value}')
-                    job = {key: value}
-                    filtered_jobs.append(job)
-            all_jobs.append(filtered_jobs)
+separated_jobs = DataCleaning.dataCleaning()
+# job_count = 0
+for job in separated_jobs:
+    if job != "":
+        lines = job.strip().split('\n')
+        result = {}
+        current_key = None
+        for line in lines:
+            if ':' in line:
+                current_key, value = line.split(':', 1)
+                result[current_key.strip()] = value.strip()
+            else:
+                result[current_key.strip()] += ' ' + line.strip()
+        # job_count = job_count + 1
+        job_string = ''
+        for key, value in result.items():
+            if key.__contains__('Job Description') or key.__contains__('Job requirement') or key.__contains__('Basic knowledge') or key.__contains__(
+                    'What you bring') \
+                    or key.__contains__('tasks include') or key.__contains__(
+                'Advanced knowledge') or key.__contains__('Expert knowledge') \
+                    or key.__contains__('Requirement') or key.__contains__('requirements') or key.__contains__(
+                'she expects') or key.__contains__('out'):
+                job_string = job_string + key.strip() + ": " + value.strip() + "\n"
+        all_jobs.append(job_string)
 
-for each_job in all_jobs:
-    print(each_job)
+for job in all_jobs:
+    print(job)
+
+

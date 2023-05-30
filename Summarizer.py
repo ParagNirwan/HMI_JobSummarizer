@@ -5,6 +5,10 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 import re
 from spacy import displacy
 
+import DataCleaning
+
+nlp = spacy.load("en_core_web_sm")
+
 
 def summarize_jobs(each_job):
     # Remove stopwords and empty spaces, lemmatize, and tokenize using Spacy
@@ -29,7 +33,6 @@ def summarize_jobs(each_job):
             if word in fdist:
                 if sent not in sentence_scores:
                     sentence_scores[sent] = fdist[word]
-                    print(sent,word)
                 else:
                     sentence_scores[sent] += fdist[word]
 
@@ -37,27 +40,11 @@ def summarize_jobs(each_job):
     summary_sentences = nlargest(3, sentence_scores, key=sentence_scores.get)
 
     # Join the summary sentences back into a string
-    summary = ' '.join(summary_sentences)
+    summary = '\n'.join(summary_sentences)
     print(summary)
     print("-" * 400)
 
 
-# Load job offers from file into pandas dataframe
-with open('./Assets/dummy.txt', encoding='utf-8') as f:
-    contents = f.readlines()
-# Load spaCy model
-nlp = spacy.load("en_core_web_sm")
-
-# Job description to summarize
-delimiter = ''
-jobs_string = delimiter.join(contents)
-
-separated_jobs = []
-if jobs_string.__contains__("-----"):
-    separated_jobs = re.split(r"-----", jobs_string)
-    for job in separated_jobs:
-        summarize_jobs(job)
-else:
-    summarize_jobs(jobs_string)
-
-
+separated_jobs = DataCleaning.dataCleaning()
+for job in separated_jobs:
+    summarize_jobs(job)
