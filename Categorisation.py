@@ -492,12 +492,11 @@ def categorize_job_ad(job_description):
         for keyword in keywords:
             if keyword in job_description:
                 count[sector] = count[sector] + 1
-
+    distribution = [cat+" : "+str(count[cat]) for cat in count if count[cat] > 0]
+    print("----list of sectors with matching keywords-----")
+    print(distribution)
     max_sect = max(count, key=count.get)
-    print(max_sect, ":", count[max_sect])
-    print("----job categorisation distribution over all the sectors-----")
-    result = [cat+" : "+str(count[cat]) for cat in count if count[cat] > 0]
-    print(result)
+    print("Job Category: ", max_sect, "(", count[max_sect], ")")
     return max_sect
 
 
@@ -531,11 +530,10 @@ for job in separated_jobs:
 
 all_sect = {key: 0 for key in sectors}
 for job in filtered_jobs:
+    print(f"{job}")
     category = categorize_job_ad(job)
     all_sect[category] = all_sect[category] + 1
-    print(f"{job}")
-    print(f"Job Category: {category}")
-    print("----------------------")
+    print("-"*200)
 
 print("Each sector and its number of jobs to be clustered")
 print(all_sect)
