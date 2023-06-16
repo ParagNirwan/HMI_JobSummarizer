@@ -27,7 +27,7 @@ sectors = {
         "geriatrics", "nursing", "midwifery", "dentistry", "optometry",
         "allied health", "medical device", "health informatics", "telemedicine", "healthcare management",
         "clinical data management", "drug discovery", "medical writing", "regulatory affairs", "quality assurance",
-        "patient advocacy", "medical coding", "healthcare consulting", "rehabilitation", "emergency medicine"
+        "patient advocacy", "medical coding", "healthcare consulting", "rehabilitation", "emergency medicine","prosthetics","dentures"
     ],
 
     "Engineering": [
