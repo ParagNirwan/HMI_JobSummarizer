@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jobs in {{ sector.name }}</title>
+    <title>Jobs in {{ sector.title }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,7 +63,7 @@
         <h1>Jobs in {{ sector.name }}</h1>
         <ul>
             {% for job in jobs %}
-                <li class="sector-{{ loop.index % 4 + 1 }}">{{ job }}</li>
+                <li class="sector-{{ loop.index % 4 + 1 }}">{{ job.title }} : {{ job.skills }}</li>
             {% endfor %}
         </ul>
     </div>
