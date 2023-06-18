@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Sectors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: lightgrey
+        }
+
+        .tile {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            display: inline-block;
+            background-color: #006666;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+
+
+        .tile:hover {
+            box-shadow: 0 4px 10px green;
+        }
+
+        .tile-blue {
+            background-color: #69b9ff;
+            co0or: #fff;
+        }
+        .tile-1 {
+            background-color: #69b9ff;
+            co0or: #fff;
+        }
+        .tile-0{
+            background-color: #94d82d;
+            color: #fff;
+        }
+        .tile-green {
+            background-color: #94d82d;
+            color: #fff;
+        }
+
+        .tile-2   {
+            background-color: #ffcc29;
+            color: #fff;
+        }
+        .tile-yellow {
+            background-color: #ffcc29;
+            color: #fff;
+        }
+
+        .tile-red {
+            background-color: #ff5858;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Job Sectors</h1>
+        <div class="tiles">
+            {% for sector in sectors %}
+                <a href="/sector/{{ loop.index0 }}" class="tile tile-{{ loop.index % 3  }}">{{ sector.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
