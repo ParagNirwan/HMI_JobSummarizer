@@ -17,12 +17,11 @@ except PermissionError:
 except Exception as e:
     print(f"An error occurred while deleting the file '{file_path}': {str(e)}")
 
-
 # Open a file in write mode
-with open('Assets/output.txt', 'w',encoding='utf-8') as file:
+with open('Assets/output.txt', 'w', encoding='utf-8') as file:
     # Redirect the standard output to the file
     sys.stdout = file
-#################################################
+    #################################################
 
     # reading the data from the file
     with open('Assets/dataset', 'rb') as handle:
@@ -30,9 +29,12 @@ with open('Assets/output.txt', 'w',encoding='utf-8') as file:
 
     print("Data type before reconstruction : ", type(data))
 
-
     # reconstructing the data as dictionary
     sectors = pickle.loads(data)
+
+# will be used for working with ui
+    sectorData = []
+
 
     def get_sector(job_description):
         job_description = job_description.lower()
@@ -68,7 +70,65 @@ with open('Assets/output.txt', 'w',encoding='utf-8') as file:
         max_job = max(job_count, key=job_count.get)
         if job_count[max_job] > 0:
             print("Job: ", max_job, "(", job_count[max_job], ")", "skills", job_skills[max_job])
+        uiData(job_description, max_sect, max_job, job_skills[max_job])
         return max_sect
+
+
+    def uiData(job_description, max_sect, max_job, skills):
+        new_sector = False
+        if len(sectorData) > 0:
+            for sector in sectorData:
+                print(sector["name"], max_sect)
+                if sector["name"] == max_sect:
+                    new_sector = False
+                    new_job = False
+                    for job in sector["jobs"]:
+                        if job["title"] == max_job:
+                            new_job = False
+                            job["skills"] = job["skills"] | set(skills)
+                            break
+                        else:
+                            new_job = True
+                    if new_job:
+                        sector["jobs"].append({"title": max_job, "skills": set(skills)})
+                    break
+                else:
+                    new_sector = True
+        else:
+            sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": set(skills)}]})
+
+        if new_sector:
+            sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": set(skills)}]})
+            new_sector = False
+    # I used set in the above code so that skills don't get repeated, the below code does the same thing but with repetitive skills
+
+        # new_sector = False
+        # if len(sectorData) > 0:
+        #     for sector in sectorData:
+        #         print(sector["name"], max_sect)
+        #         if sector["name"] == max_sect:
+        #             new_sector = False
+        #             new_job = False
+        #             for job in sector["jobs"]:
+        #                 if job["title"] == max_job:
+        #                     new_job = False
+        #                     job["skills"] = job["skills"] + skills
+        #                     break
+        #                 else:
+        #                     new_job = True
+        #             if new_job:
+        #                 sector["jobs"].append({"title": max_job, "skills": skills})
+        #             break
+        #         else:
+        #             new_sector = True
+        # else:
+        #     sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": skills}]})
+        #
+        # if new_sector:
+        #     sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": skills}]})
+        #     new_sector = False
+
+        print(sectorData)
 
 
     # Categorize job ads
@@ -118,6 +178,6 @@ with open('Assets/output.txt', 'w',encoding='utf-8') as file:
     print("Total categorized:", sum_of_all)
 
     sys.stdout = sys.__stdout__
-
-vsn_of_jobs = "visualisation of " + str(sum_of_all) + " jobs"
-visualization.visualize_jobs(all_sect, "Sectors", "No of jobs", vsn_of_jobs)
+    print(sectorData)
+# vsn_of_jobs = "visualisation of " + str(sum_of_all) + " jobs"
+# visualization.visualize_jobs(all_sect, "Sectors", "No of jobs", vsn_of_jobs)
