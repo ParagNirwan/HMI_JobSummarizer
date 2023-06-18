@@ -5,7 +5,7 @@ app = Flask(__name__)
 # Sample data for job sectors and jobs
 job_sectors = [
     {
-        'name': 'Information Technology',
+        'namdfe': 'IT',
         'jobs': ['Job 1', 'Job 2', 'Job 3']
 
     },
