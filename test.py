@@ -457,7 +457,7 @@ sectors = {
 
     "Engineering":
         {
-            'civil engineer': [
+            'Civil Engineer': [
                 'structural analysis',
                 'project management',
                 'construction methods',
@@ -479,7 +479,7 @@ sectors = {
                 'construction safety',
                 'contract management'
             ],
-            'mechanical engineer': [
+            'Mechanical Engineer': [
                 'mechanical design',
                 'thermodynamics',
                 'fluid mechanics',
@@ -501,7 +501,7 @@ sectors = {
                 'piping and instrumentation diagrams',
                 'technical writing'
             ],
-            'electrical engineer': [
+            'Electrical Engineer': [
                 'circuit design',
                 'electronic systems',
                 'power systems',
@@ -523,7 +523,7 @@ sectors = {
                 'project management',
                 'communication systems'
             ],
-            'chemical engineer': [
+            'Chemical Engineer': [
                 'chemical process design',
                 'thermodynamics',
                 'transport phenomena',

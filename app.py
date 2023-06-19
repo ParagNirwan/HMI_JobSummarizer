@@ -14,7 +14,7 @@ def index():
 def sector(sector_id):
     sector = Categorisation.sectorData[sector_id]
     jobs = sector['jobs']
-    return render_template('sector.html', sector=Categorisation.sectorData, jobs=jobs)
+    return render_template('sector.html', sector=sector, jobs=jobs)
 
 
 if __name__ == '__main__':
