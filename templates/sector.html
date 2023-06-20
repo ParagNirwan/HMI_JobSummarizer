@@ -33,9 +33,11 @@
 
             <div id="collapse{{ loop.index }}" class="accordion-collapse collapse {% if loop.index == 1 %} {% endif %}" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <span style="font-weight:bold">Required Skills:</span>
-                   {% set skills = job.skills|join(', ') %}
-                    {{ skills }}
+                   <ul>
+            {% for skill in job.skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
                 </div>
             </div>
         </div>
