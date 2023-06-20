@@ -5,7 +5,7 @@ from langdetect import detect
 
 def dataCleaning():
     # Load job offers from file into pandas dataframe
-    with open('./Assets/eures_job_desc_en.txt', encoding='utf-8') as f:
+    with open('../../Desktop/as/Assets/eures_job_desc_en.txt', encoding='utf-8') as f:
         contents = f.readlines()
 
     nlp = spacy.load('en_core_web_sm')

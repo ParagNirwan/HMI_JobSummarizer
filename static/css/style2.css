@@ -1,6 +1,6 @@
         body {
             font-family: Arial, sans-serif;
-            background-color: #0D1820;
+           background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
 
             -webkit-touch-callout: none;
     -webkit-user-select: none;
