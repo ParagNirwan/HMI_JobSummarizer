@@ -1,7 +1,7 @@
 import pickle
 
 # opening file in write mode (binary)
-file = open("../../Desktop/as/Assets/dataset", "wb")
+file = open("Assets/dataset", "wb")
 
 sectors = {
     "Information Technology": {
