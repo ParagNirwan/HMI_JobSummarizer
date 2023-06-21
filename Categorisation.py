@@ -6,7 +6,7 @@ import visualization
 import sys
 import os
 
-file_path = "../../Desktop/as/Assets/output.txt"
+file_path = "Assets/output.txt"
 try:
     os.remove(file_path)
     print(f"The file '{file_path}' has been deleted.")
@@ -18,13 +18,13 @@ except Exception as e:
     print(f"An error occurred while deleting the file '{file_path}': {str(e)}")
 
 # Open a file in write mode
-with open('../../Desktop/as/Assets/output.txt', 'w', encoding='utf-8') as file:
+with open('Assets/output.txt', 'w', encoding='utf-8') as file:
     # Redirect the standard output to the file
     sys.stdout = file
     #################################################
 
     # reading the data from the file
-    with open('../../Desktop/as/Assets/dataset', 'rb') as handle:
+    with open('Assets/dataset', 'rb') as handle:
         data = handle.read()
 
     print("Data type before reconstruction : ", type(data))

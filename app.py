@@ -4,20 +4,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 @app.route('/')
 def index():
-    images = ["IT.jpg", "Engineering.jpg","retail.jpg","RealEstate.jpg","Law Enforcement.jpg","Hospitality.jpg",
-              "Healthcare.jpg",
-              "Financial.jpg",
-              "Telecommunications.jpg",
-              "Automotive.jpg",
-              "Logistics.jpg",
-              "Education.jpg",
-              "Manufacturing.jpg",
-              "media.jpg",
-              "govtPublicAdmin.jpg",
-              "Food.jpg",
-              "Construction.jpg",
-              "Consulting.jpg"
-              ]
+    images = ["govtPublicAdmin.jpg","Healthcare.jpg","Logistics.jpg","Consulting.jpg","Hospitality.jpg","Law Enforcement.jpg","Construction.jpg",
+              "Automotive.jpg", "Manufacturing.jpg","RealEstate.jpg", "Engineering.jpg",
+              "IT.jpg","Telecommunications.jpg","Financial.jpg","Education.jpg","Food.jpg","retail.jpg","media.jpg"]
     return render_template('index.html', sectors=Categorisation.sectorData, images=images)
 
 

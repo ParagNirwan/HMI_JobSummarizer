@@ -1,22 +1,41 @@
 sectors = {
-        "Information Technology": ["software", "developer", "data analyst", "cybersecurity", "IT"],
-        "Healthcare and Pharmaceuticals": ["nurse", "doctor", "pharmaceutical", "healthcare"],
-        "Engineering": ["engineer", "civil", "mechanical", "electrical", "aerospace"],
-        "Financial Services": ["finance", "banking", "insurance", "investment", "fintech"],
+
         "Renewable Energy": ["renewable energy", "solar", "wind", "hydro"],
-        "Professional Services": ["consulting", "legal services", "accounting", "human resources"],
-        "Tourism and Hospitality": ["tourism", "hospitality", "hotel", "restaurant", "travel"],
-        "Manufacturing": ["manufacturing", "automotive", "machinery", "aerospace"],
-        "Retail and E-commerce": ["retail", "e-commerce", "sales", "marketing", "logistics"],
-        "Education": ["education", "teaching", "research", "university"],
-        "Telecommunications": ["telecommunications", "network", "communication", "telecom"],
-        "Transportation and Logistics": ["transportation", "logistics", "supply chain"],
-        "Consulting": ["consulting", "advisor", "strategy"],
-        "Media and Entertainment": ["media", "entertainment", "film", "television"],
-        "Construction": ["construction", "civil engineering", "building"],
-        "Automotive": ["automotive", "vehicles", "car", "auto"],
-        "Government and Public Administration": ["government", "public administration", "public sector"],
-        "Food and Beverage": ["food", "beverage", "restaurant", "catering"],
-        "Real Estate": ["real estate", "property", "housing"],
         "Fashion and Apparel": ["fashion", "apparel", "clothing", "design"]
     }
+
+    Information Technology (IT) Services
+
+Healthcare and Pharmaceuticals
+Financial Services and Banking
+Manufacturing and Engineering
+Education and Training
+Professional Services (Consulting, Legal, Accounting)
+E-commerce and Retail
+Energy and Renewable Energy
+Telecommunications
+Construction and Infrastructure
+Transportation and Logistics
+Government and Public Administration
+Hospitality and Tourism
+Media and Entertainment
+Automotive Industry
+Real Estate and Property Development
+
+))))))))))))))))))))))))))))New(((((((((((((((((((((((((((
+Agriculture and Food Production
+
+Environmental Services
+Aerospace and Defense
+
+Nonprofit and Social Services
+Creative Arts and Design
+Insurance
+Biotechnology and Life Sciences
+Market Research and Analysis
+Human Resources and Recruitment
+Sports and Fitness
+Sales and Marketing
+Data Science and Analytics
+Customer Service and Support
+Mining and Extraction
