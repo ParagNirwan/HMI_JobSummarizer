@@ -27,7 +27,7 @@ def index():
         "Fashion": "Fashion.jpg",
         "Food and Beverages": "Food.jpg",
         "Construction": "Construction.jpg",
-        "Sports and Fitness": "Sports.png",
+        "Sports & Fitness": "Sports.png",
         "Consulting": "Consulting.jpg"
     }
 
