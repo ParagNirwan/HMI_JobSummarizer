@@ -5152,6 +5152,7 @@ sectors = {
             "flexible",
         ],
         "Banquet Manager": [
+            "cleaning"
             "event planning",
             "communication",
             "organizational skills",

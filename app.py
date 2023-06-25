@@ -1,13 +1,10 @@
 import Categorisation
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
+import requests
 app = Flask(__name__)
+
 @app.route('/')
 def index():
-    images = ["govtPublicAdmin.jpg","Healthcare.jpg","Logistics.jpg","Consulting.jpg","Hospitality.jpg","Law Enforcement.jpg","Construction.jpg",
-              "Automotive.jpg", "Manufacturing.jpg","Fashion.jpg","RealEstate.jpg", "Engineering.jpg",
-              "IT.jpg","Telecommunications.jpg","Financial.jpg","Education.jpg","Food.jpg","retail.jpg","media.jpg","Agriculture.jpg","Sports.png"]
-
     images2 = {
         "Government Public Admin": "govtPublicAdmin.jpg",
         "Engineering": "Engineering.jpg",
@@ -30,7 +27,6 @@ def index():
         "Sports & Fitness": "Sports.png",
         "Consulting": "Consulting.jpg"
     }
-
     return render_template('index.html', sectors=Categorisation.sectorData, images=images2)
 
 
@@ -40,7 +36,28 @@ def sector(sector_id):
     jobs = sector['jobs']
     return render_template('sector.html', sector=sector, jobs=jobs)
 
+@app.route('/jsb')
+def jsb():
+    return render_template('JobSearchBeta.html')
+
+@app.route('/search', methods=['GET'])
+def search():
+    keyword = request.args.get('keyword')
+    if keyword:
+        uri = "https://ec.europa.eu/esco/api/search?language=en&type=skill&text="
+        keyword = keyword.replace(" ", "+")
+        response = requests.get(uri + keyword)
+        if response.status_code == 200:
+            try:
+                data = response.json()
+                titles = [result['title'] for result in data['_embedded']['results']]
+                return render_template('results.html', titles=titles)
+            except ValueError:
+                return "Error: Invalid response from the API."
+        else:
+            return f"Error: {response.status_code} - Failed to fetch data from the API."
+    else:
+        return ""
 
 if __name__ == '__main__':
     app.run()
-
