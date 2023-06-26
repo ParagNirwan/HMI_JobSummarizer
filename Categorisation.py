@@ -1,9 +1,6 @@
-from matplotlib import __getattr__
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import normalize
-
 import DataCleaning
 import pickle
+from collections import Counter
 import visualization
 
 ###################################################
@@ -75,24 +72,21 @@ with open('Assets/output.txt', 'w', encoding='utf-8') as file:
         if job_count[max_job] > 0:
             print("Job: ", max_job, "(", job_count[max_job], ")", "skills", job_skills[max_job])
         uiData(job_description, max_sect, max_job, job_skills[max_job])
-        #calImpofSkills(sectorData)
         return max_sect
-    def calImpofSkills(sectorData):
+    def calcImpOfSkills(sectorData):
         for sector in sectorData:
             print("for Sector*****************************:" + str(sector["name"]) )
             for jobs in sector["jobs"]:
                 skill_scores = {}
-                for skill in jobs["skills"]:
-
-                        if skill not in skill_scores:
-                            skill_scores[skill] = 0
-                            skill_scores[skill] += jobs["job_desc"].lower().count(skill.lower())
-
-                sorted_skills = sorted(skill_scores.items(), key=lambda x: x[1], reverse=True)
-                jobs["skills"]=[item[0] for item in sorted_skills]
+                #for skill in jobs["skills"]:
+                skill = jobs["skills"]
+                counter = Counter(skill)
+                seen = set()
+                ordered_list = [x for x in skill if x not in seen and (seen.add(x) or True)]
+                ordered_list.sort(key=lambda x: -counter[x])
+                jobs["skills"]=ordered_list
                 print("for job:"+str(jobs["title"])+"->")
-                print(sorted_skills)
-
+                print(ordered_list)
 
     def uiData(job_description, max_sect, max_job, skills):
         new_sector = False
@@ -104,22 +98,22 @@ with open('Assets/output.txt', 'w', encoding='utf-8') as file:
                     new_job = False
                     for job in sector["jobs"]:
                         if job["title"] == max_job:
-                            job["job_desc"]= job["job_desc"] + "/n"+job_description
                             new_job = False
-                            job["skills"] = job["skills"] | set(skills)
+                            job["skills"] = job["skills"] + (skills)
+                            print(job["skills"] )
                             break
                         else:
                             new_job = True
                     if new_job:
-                        sector["jobs"].append({"title": max_job, "skills": set(skills), "job_desc": job_description})
+                        sector["jobs"].append({"title": max_job, "skills": (skills)})
                     break
                 else:
                     new_sector = True
         else:
-            sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": set(skills), "job_desc": job_description}]})
+            sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": (skills)}]})
 
         if new_sector:
-            sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": set(skills), "job_desc": job_description}]})
+            sectorData.append({"name": max_sect, "jobs": [{"title": max_job, "skills": (skills)}]})
             new_sector = False
     # I used set in the above code so that skills don't get repeated, the below code does the same thing but with repetitive skills
 
@@ -199,7 +193,7 @@ with open('Assets/output.txt', 'w', encoding='utf-8') as file:
     print("Total categorized:", sum_of_all)
 
     sys.stdout = sys.__stdout__
-    calImpofSkills(sectorData)
-    #print(sectorData)
+    calcImpOfSkills(sectorData)
+    print(sectorData)
 # vsn_of_jobs = "visualisation of " + str(sum_of_all) + " jobs"
 # visualization.visualize_jobs(all_sect, "Sectors", "No of jobs", vsn_of_jobs)
