@@ -34,22 +34,21 @@
     <h1 style="margin-top: 50px">Job Sectors</h1><br />
     <div class="row justify-content-center animate__animated animate__fadeInUpBig">
       {% for sector in sectors %}
+
       <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-        <div class="card" style="width: 18rem;">
-          <a href="/sector/{{ loop.index0 }}" class="card-text">
-            <img src="{{ url_for('static', filename=images[sector.name]) }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p>{{ sector.name }}</p>
-            </div>
-          </a>
-        </div>
+
+          <div class="card">
+            <a href="/sector/{{ loop.index0 }}" class="card-text">
+        <div class="card-image" style="background-image:url({{ url_for('static', filename=images[sector.name]) }})"></div>
+        <p class="card-title">{{sector.name}}</p>
+                 </a>
       </div>
+
+      </div>
+
       {% endfor %}
     </div>
   </div>
-
-
-
 
 
 

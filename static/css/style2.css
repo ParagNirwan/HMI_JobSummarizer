@@ -1,6 +1,15 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
+     font-family: Arial, sans-serif;
+background-image: radial-gradient(circle 500px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+
+   background-repeat: no-repeat;
+  background-size: cover;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -34,20 +43,20 @@ li-class:hover {
 }
 
 .accordion-body {
-    background-color: #7F93B3;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    font-family: Arial, sans-serif;
+background-image: linear-gradient(to top, #f5f7fa 0%, #c3cfe2 100%);
+
 }
 
 .accordion {
-    background-color: #cfe2ff;
-    border-radius: 80px;
+
+    border-radius: 20px;
 }
 
 .accordion-item {
     transition: transform 0.3s;
-    background-color: #0d1820;
-    border-radius: 80px;
+    border-radius: 20px;
+
 }
 
 .accordion-item:hover {
@@ -79,4 +88,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-
+.accordion-button{
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
