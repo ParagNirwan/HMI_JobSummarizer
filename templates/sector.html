@@ -58,7 +58,7 @@
           <div class="accordion-body">
             <ul class="ul-class">
               {% for skill in job.skills %}
-              <div class="skill-bubble" id={{skill}}>{{ skill }}</div>
+              <div class="skill-bubble" id={{skill}}>{{ loop.index }}. {{ skill }}</div>
               {% endfor %}
             </ul>
           </div>
