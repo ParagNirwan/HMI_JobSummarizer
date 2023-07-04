@@ -43,8 +43,4 @@ def summarize_jobs(each_job):
     summary = '\n'.join(summary_sentences)
     print(summary)
     print("-" * 400)
-
-
-separated_jobs = DataCleaning.dataCleaning()
-for job in separated_jobs:
-    summarize_jobs(job)
+    return summary

@@ -6,6 +6,7 @@ import visualization
 ###################################################
 import sys
 import os
+import Summarizer
 
 file_path = "Assets/output.txt"
 try:
@@ -180,7 +181,8 @@ with open('Assets/output.txt', 'w', encoding='utf-8') as file:
     all_sect = {key: 0 for key in sectors}
     for job in filtered_jobs:
         print(f"{job}")
-        category = get_job(job)
+        summary = Summarizer.summarize_jobs(job)
+        category = get_job(summary)
         all_sect[category] = all_sect[category] + 1
         print("-" * 200)
 

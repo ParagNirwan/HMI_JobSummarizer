@@ -25,7 +25,8 @@ def index():
         "Food and Beverages": "Food.jpg",
         "Construction": "Construction.jpg",
         "Sports & Fitness": "Sports.png",
-        "Consulting": "Consulting.jpg"
+        "Consulting": "Consulting.jpg",
+        "Agriculture": "Agriculture.jpg"
     }
     return render_template('index.html', sectors=Categorisation.sectorData, images=images2)
 

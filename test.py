@@ -29,7 +29,7 @@ sectors = {
         ],
         "Data Scientist": [
             "python",
-            "R",
+            "R programming",
             "machine learning",
             "statistics",
             "data analysis",
@@ -448,14 +448,31 @@ sectors = {
     },
     "Healthcare": {
         "Dentist": [
-            "healthcare",
-            "dental",
-            "technician",
-            "repair",
-            "maintenance",
-            "prosthetics",
-            "dentures"
+            "Diagnosis",
+            "Treatment planning",
+            "Examination",
+            "Assessment",
+            "Procedures",
+            "Anesthesia",
+            "Hygiene care",
+            "Periodontics",
+            "Prosthodontics",
+            "Orthodontics",
+            "Endodontics",
+            "Surgery",
+            "Pediatric dentistry",
+            "Geriatric dentistry",
+            "Pathology diagnosis",
+            "Radiographic interpretation",
+            "Materials knowledge",
+            "Infection control",
+            "Communication",
+            "Pain management",
+            "Emergency care",
+            "Practice management",
+            "Continuing education"
         ],
+
         "Physician": [
             "diagnosis",
             "treatment",
