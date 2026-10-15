@@ -1,1 +1,10 @@
 .temp
+
+# Generated files and local configuration
+__pycache__/
+*.py[cod]
+.idea/
+.vscode/
+.venv/
+venv/
+.pytest_cache/
