@@ -1,10 +1,30 @@
-# HMI_JobSummarizer
-Human Machine Interaction Project
+# HMI Job Summarizer
 
+A human–machine interaction coursework project exploring extractive text summarization in Python. The summarizer scores sentences using word-frequency information and selects the highest-scoring sentences for a short summary.
 
-Summarizer.py
-The code uses the NLTK library to summarize sentences. It begins by importing the FreqDist class from the nltk.probability module and the nlargest function from the heapq module. The FreqDist class is used to create a frequency distribution of the words in the text, and the nlargest function is used to get the top 3 sentences with the highest scores.
+## How it works
 
-The code then initializes an empty dictionary called sentence_scores to store the scores of each sentence. It creates a frequency distribution of the filtered tokens using the FreqDist class. Then, it loops through each sentence in the text and each word in the lowercase version of the sentence. If the word is in the frequency distribution, the score of the sentence is incremented by the frequency of the word. Finally, the nlargest function is used to get the top 3 sentences with the highest scores.
+The approach uses NLTK frequency utilities and Python's `heapq.nlargest` to select top-ranked sentences. This is an extractive baseline: it selects sentences from the original text rather than generating new wording.
 
-The summary_sentences variable contains the top 3 sentences with the highest scores, and these sentences are joined back into a string using the join() method to form the summary.
+## Requirements
+
+- Python 3
+- NLTK
+
+Install the dependency:
+
+```bash
+python -m pip install nltk
+```
+
+Depending on the tokenizer and data used by the implementation, NLTK resources may also need to be downloaded before running it.
+
+## Run
+
+Inspect the entry-point script and invoke it with Python, for example:
+
+```bash
+python Summarizer.py
+```
+
+This is a small academic prototype, not a production summarization service. Future improvements could include input validation, tests for empty or short text, reproducible dependency versions, and a clear command-line interface.
